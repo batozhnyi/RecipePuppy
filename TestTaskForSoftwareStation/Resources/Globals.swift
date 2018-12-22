@@ -13,3 +13,5 @@ import Foundation
     public var ingredients = "cheddar cheese, eggs, olive oil, onions, potato, salt"
     public var thumbnail = "puppyLogo"
 
+    public var recipeNumber = 10
+

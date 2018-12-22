@@ -23,7 +23,7 @@ class RecipeEntity: NSManagedObject {
         }
     }
 
-    class func findOrCreate(recipe: Recipe,
+    class func findOrCreate(recipe: RecipeStruct,
                             context: NSManagedObjectContext) throws -> RecipeEntity {
 
         // Looking for recipe in Data Base

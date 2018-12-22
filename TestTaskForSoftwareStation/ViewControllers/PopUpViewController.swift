@@ -23,6 +23,7 @@ class PopUpViewController: UIViewController {
         super.viewDidLoad()
         
         popUpView.layer.cornerRadius = 20
+        popUpView.clipsToBounds = true
 
         if Reachability.isConnectedToNetwork(){
             webViewPopUp()

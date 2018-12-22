@@ -10,16 +10,9 @@ import UIKit
 
 class RecipeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    private var recipeNumber = 10
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ServerRecipe.getRecipe(with: 1, completionHandler: { (recipes) in
-
-            guard let openRecipeResult = recipes.results else { return }
-                print(openRecipeResult)
-        })
     }
 
     // Number of recipes

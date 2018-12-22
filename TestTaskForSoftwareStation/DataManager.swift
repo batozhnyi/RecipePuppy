@@ -10,72 +10,66 @@ import Foundation
 
 class DataManager {
 
-    // Download json data
-    class func downloadRecipe(_ completionHandler: @escaping ([Recipe]) -> Void ) {
+    typealias ErrorCompletion = (Error) -> (Void)
+
+    class func getRecipes(_ complitionHandler: @escaping ([RecipeStruct]) -> Void,
+                          completionError: @escaping ErrorCompletion) {
+
+        if let databaseRecipes = recipesFromDatabase() {
+            complitionHandler(databaseRecipes)
+
+        } else {
+
+            downloadRecipe({ (recipes) in
+                DatabaseService.coreDataContainer.performBackgroundTask({ (context) in
+
+                    for recipe in recipes {
+                        _ = try? RecipeEntity.findOrCreate(recipe: recipe,
+                                                           context: context)
+                    }
+                    try? context.save()
+                    complitionHandler(recipes)
+                })
+            }, completionError: completionError)
+        }
+    }
+
+    // Download JSON Data from Rest API
+    class func downloadRecipe(_ completionHandler: @escaping ([RecipeStruct]) -> Void,
+                              completionError: @escaping ErrorCompletion) {
 
         var pageNumber = 1
 
-        ServerRecipe.getRecipe(with: pageNumber, completionHandler: { (recipes) in
-
+        ServerService.getRecipe(with: pageNumber,
+                               completionHandler: { (recipes) in
             guard let openRecipeResult = recipes.results else { return }
             print(openRecipeResult)
             pageNumber = pageNumber + 1
             completionHandler(openRecipeResult)
-
-//            if let openRecipeResult = recipes.results {
-//                var returnedRecipes: [Recipe] = []
-//                for recipeEntity in openRecipeResult {
-//                    var recipe = Recipe()
-//                    recipe.title = recipeEntity.title ?? ""
-//                    recipe.href = recipeEntity.href ?? ""
-//                    recipe.ingredients = recipeEntity.ingredients ?? ""
-//                    recipe.thumbnail = recipeEntity.thumbnail ?? ""
-//
-//                    returnedRecipes.append(recipe)
-//                }
-//            pageNumber = pageNumber + 1
-//            completionHandler(openRecipeResult)
-//            }
-
-        })
+        }, completionError: completionError)
     }
 
-    class func getRecipes(countNumber: @escaping ((Int) -> ()),
-                    complitionHandler: @escaping ([Recipe]) -> Void) {
-        DispatchQueue.main.async {
-            let recipeEntities = try? RecipeEntity.getAllRecipes(context: AppDelegate.viewContext)
+    // Get recepies from Data Base
+    class func recipesFromDatabase() -> [RecipeStruct]? {
+        let recipeEntities = try? RecipeEntity.getAllRecipes(context: DatabaseService.viewContext)
 
-            var countNumberOfRecipes = 0
+        if let recipes = recipeEntities,
+            recipes.count > 0 {
+            var returnedRecipes: [RecipeStruct] = []
 
-            if let recipes = recipeEntities,
-                recipes.count > 0 {
-                    countNumberOfRecipes = recipes.count
-                    var returnedRecipes: [Recipe] = []
-                    for recipeEntity in recipes {
-                        var recipe = Recipe()
-                        recipe.title = recipeEntity.title
-                        recipe.href = recipeEntity.href
-                        recipe.ingredients = recipeEntity.ingredients
-                        recipe.thumbnail = recipeEntity.thumbnail
+            for recipeEntity in recipes {
+                var recipe = RecipeStruct()
+                recipe.title = recipeEntity.title
+                recipe.href = recipeEntity.href
+                recipe.ingredients = recipeEntity.ingredients
+                recipe.thumbnail = recipeEntity.thumbnail
 
-                        returnedRecipes.append(recipe)
-                }
-                countNumber(countNumberOfRecipes)
-                complitionHandler(returnedRecipes)
-            } else {
-                downloadRecipe({ (recipes) in
-
-                    AppDelegate.coreDataContainer.performBackgroundTask({ (context) in
-
-                        for recipe in recipes {
-                            try? RecipeEntity.findOrCreate(recipe: recipe,
-                                                           context: context)
-                        }
-                        try? context.save()
-                        complitionHandler(recipes)
-                    })
-                })
+                returnedRecipes.append(recipe)
             }
+
+            return returnedRecipes
+        } else {
+            return nil
         }
     }
 }

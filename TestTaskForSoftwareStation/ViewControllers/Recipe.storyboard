@@ -117,10 +117,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtW-Tg-jnA">
-                                        <rect key="frame" x="0.0" y="45" width="345" height="482"/>
+                                        <rect key="frame" x="0.0" y="45" width="345" height="502"/>
                                         <subviews>
                                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0BO-Fu-BNu">
-                                                <rect key="frame" x="0.0" y="0.0" width="345" height="482"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="502"/>
                                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <wkWebViewConfiguration key="configuration">
                                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -128,7 +128,7 @@
                                                 </wkWebViewConfiguration>
                                             </wkWebView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7HV-lX-jVy">
-                                                <rect key="frame" x="0.0" y="0.0" width="345" height="482"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="502"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -150,7 +150,7 @@
                                     <constraint firstItem="KOo-h2-cqL" firstAttribute="leading" secondItem="aVe-tG-wyO" secondAttribute="leading" constant="15" id="3fR-pf-hiV"/>
                                     <constraint firstAttribute="trailing" secondItem="2wI-tN-jUc" secondAttribute="trailing" constant="10" id="5yX-UK-jHh"/>
                                     <constraint firstItem="2wI-tN-jUc" firstAttribute="leading" secondItem="KOo-h2-cqL" secondAttribute="trailing" constant="5" id="G0r-YD-cER"/>
-                                    <constraint firstAttribute="bottom" secondItem="XtW-Tg-jnA" secondAttribute="bottom" constant="20" id="GAG-YK-wlj"/>
+                                    <constraint firstAttribute="bottom" secondItem="XtW-Tg-jnA" secondAttribute="bottom" id="GAG-YK-wlj"/>
                                     <constraint firstItem="XtW-Tg-jnA" firstAttribute="top" secondItem="2wI-tN-jUc" secondAttribute="bottom" constant="10" id="bUn-xT-cgq"/>
                                     <constraint firstAttribute="trailing" secondItem="XtW-Tg-jnA" secondAttribute="trailing" id="k3s-D1-1MZ"/>
                                     <constraint firstItem="XtW-Tg-jnA" firstAttribute="leading" secondItem="aVe-tG-wyO" secondAttribute="leading" id="qZA-a0-OHg"/>

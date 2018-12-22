@@ -10,6 +10,7 @@ import SystemConfiguration
 
 public class Reachability {
 
+    // Downloaded from Stack Overflow
     class func isConnectedToNetwork() -> Bool {
 
         var zeroAddress = sockaddr_in(sin_len: 0,

@@ -1,5 +1,5 @@
 //
-//  RecipePuppyStruct.swift
+//  JsonStruct.swift
 //  TestTaskForSoftwareStation
 //
 //  Created by batozhnyi on 12/13/18.
@@ -8,23 +8,16 @@
 
 import Foundation
 
-struct RecipePuppy: Decodable {
+struct JsonStruct: Decodable {
     var title: String?
     var version: Double?
     var href: String?
-    var results: [Recipe]?
+    var results: [RecipeStruct]?
 }
 
-struct Recipe: Decodable {
+struct RecipeStruct: Decodable {
     var title: String?
     var href: String?
     var ingredients: String?
     var thumbnail: String?
-}
-
-struct nonOptionalRecipe: Decodable {
-    var title: String
-    var href: String
-    var ingredients: String
-    var thumbnail: String
 }
