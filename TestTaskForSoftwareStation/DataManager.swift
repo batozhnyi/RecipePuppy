@@ -40,7 +40,7 @@ class DataManager {
 
         var pageNumber = 1
 
-        ServerService.getRecipe(with: pageNumber,
+        ServerService.downloadRecipes(with: pageNumber,
                                completionHandler: { (recipes) in
             guard let openRecipeResult = recipes.results else { return }
             print(openRecipeResult)

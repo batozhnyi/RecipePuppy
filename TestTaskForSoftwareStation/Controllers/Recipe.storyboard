@@ -73,7 +73,7 @@
                                     <outlet property="image" destination="ilA-6h-Pu8" id="vGz-T5-mch"/>
                                     <outlet property="label" destination="l4j-SV-ipw" id="2ih-5d-C18"/>
                                     <outlet property="text" destination="v91-Ef-KTa" id="ewV-JO-Atm"/>
-                                    <segue destination="0Te-Ps-LOO" kind="presentation" id="IzR-Qv-vhW"/>
+                                    <segue destination="0Te-Ps-LOO" kind="presentation" identifier="PopupSegue" id="IzR-Qv-vhW"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

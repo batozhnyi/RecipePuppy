@@ -15,6 +15,8 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var image: UIImageView!
+    var href: String?
+    var receipeTitle: String?
 
     let noInternetImage = "noInternet"
     let noInternetLabel = "Sorry"
@@ -41,10 +43,10 @@ class PopUpViewController: UIViewController {
 
     // Opened web view
     func webViewPopUp() {
-//        label.text = receipeTitle
-//        guard let url = URL(string: href) else { return }
-//        let request = URLRequest(url: url)
-//        webView.load(request)
+        label.text = receipeTitle
+        guard let url = URL(string: href!) else { return }
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
 
 }

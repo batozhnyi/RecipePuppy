@@ -10,7 +10,7 @@ import Foundation
 
 class ServerService {
 
-    class func getRecipe(with numberPage: Int,
+    class func downloadRecipes(with numberPage: Int,
                          completionHandler: @escaping (JsonStruct) -> Void,
                          completionError: @escaping (Error) -> Void) {
         
