@@ -41,10 +41,10 @@ class PopUpViewController: UIViewController {
 
     // Opened web view
     func webViewPopUp() {
-        label.text = receipeTitle
-        guard let url = URL(string: href) else { return }
-        let request = URLRequest(url: url)
-        webView.load(request)
+//        label.text = receipeTitle
+//        guard let url = URL(string: href) else { return }
+//        let request = URLRequest(url: url)
+//        webView.load(request)
     }
 
 }

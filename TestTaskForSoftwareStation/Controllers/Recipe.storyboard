@@ -34,13 +34,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="358" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" text="Lorem ipsum dolor" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v91-Ef-KTa">
-                                            <rect key="frame" x="20" y="25" width="333" height="53"/>
+                                        <textView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Lorem ipsum dolor" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v91-Ef-KTa">
+                                            <rect key="frame" x="20" y="14" width="333" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4j-SV-ipw">
-                                            <rect key="frame" x="24" y="10" width="329" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4j-SV-ipw">
+                                            <rect key="frame" x="24" y="7" width="329" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.92786628010000005" green="0.69948840140000001" blue="0.25536891820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                                     <constraint firstItem="ilA-6h-Pu8" firstAttribute="leading" secondItem="G5F-Rf-jtW" secondAttribute="leading" constant="2" id="ijh-Jd-WaH"/>
                                     <constraint firstItem="ilA-6h-Pu8" firstAttribute="top" secondItem="G5F-Rf-jtW" secondAttribute="top" constant="2" id="ka8-9C-hDN"/>
                                     <constraint firstAttribute="trailing" secondItem="l4j-SV-ipw" secondAttribute="trailing" constant="5" id="oPj-uT-fDX"/>
-                                    <constraint firstItem="l4j-SV-ipw" firstAttribute="top" secondItem="G5F-Rf-jtW" secondAttribute="top" constant="10" id="saO-C6-1fB"/>
+                                    <constraint firstItem="l4j-SV-ipw" firstAttribute="top" secondItem="G5F-Rf-jtW" secondAttribute="top" constant="7" id="saO-C6-1fB"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="PDt-hp-0gO"/>
                                 <connections>

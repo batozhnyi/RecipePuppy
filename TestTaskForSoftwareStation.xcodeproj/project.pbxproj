@@ -13,7 +13,6 @@
 		5E860FFB21CB984B00B5B053 /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E860FFA21CB984B00B5B053 /* CheckInternet.swift */; };
 		5E863CA221CD2C6B00ADC383 /* RecipeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E863CA121CD2C6B00ADC383 /* RecipeEntity.swift */; };
 		5E863CA621CD5BF900ADC383 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E863CA521CD5BF900ADC383 /* DataManager.swift */; };
-		5E863CA821CD9F7600ADC383 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E863CA721CD9F7600ADC383 /* Globals.swift */; };
 		5EC678AC21C19B0A0025D136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC678AB21C19B0A0025D136 /* AppDelegate.swift */; };
 		5EC678AE21C19B0A0025D136 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC678AD21C19B0A0025D136 /* RecipeController.swift */; };
 		5EC678B421C19B0A0025D136 /* CoreDataRecipes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EC678B221C19B0A0025D136 /* CoreDataRecipes.xcdatamodeld */; };
@@ -30,7 +29,6 @@
 		5E860FFA21CB984B00B5B053 /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		5E863CA121CD2C6B00ADC383 /* RecipeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEntity.swift; sourceTree = "<group>"; };
 		5E863CA521CD5BF900ADC383 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		5E863CA721CD9F7600ADC383 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		5EC678A821C19B0A0025D136 /* TestTaskForSoftwareStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTaskForSoftwareStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC678AB21C19B0A0025D136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC678AD21C19B0A0025D136 /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 		5EC678C821C284740025D136 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5E863CA721CD9F7600ADC383 /* Globals.swift */,
 				5EC678AB21C19B0A0025D136 /* AppDelegate.swift */,
 				5E860FFA21CB984B00B5B053 /* CheckInternet.swift */,
 				5EC678B521C19B0D0025D136 /* Assets.xcassets */,
@@ -202,7 +199,6 @@
 				5EC678B421C19B0A0025D136 /* CoreDataRecipes.xcdatamodeld in Sources */,
 				5E863CA221CD2C6B00ADC383 /* RecipeEntity.swift in Sources */,
 				5EC678C121C1A23F0025D136 /* ServerService.swift in Sources */,
-				5E863CA821CD9F7600ADC383 /* Globals.swift in Sources */,
 				5E860FFB21CB984B00B5B053 /* CheckInternet.swift in Sources */,
 				5E860FF721C95D2000B5B053 /* PopUpViewController.swift in Sources */,
 			);
