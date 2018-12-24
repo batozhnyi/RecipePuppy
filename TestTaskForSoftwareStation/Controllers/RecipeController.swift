@@ -10,14 +10,18 @@ import UIKit
 
 class RecipeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
 
     }
 
     // Number of recipes
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
+
         return recipeNumber
     }
 

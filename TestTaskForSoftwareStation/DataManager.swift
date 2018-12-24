@@ -21,7 +21,7 @@ class DataManager {
         } else {
 
             downloadRecipe({ (recipes) in
-                DatabaseService.coreDataContainer.performBackgroundTask({ (context) in
+                AppDelegate.coreDataContainer.performBackgroundTask({ (context) in
 
                     for recipe in recipes {
                         _ = try? RecipeEntity.findOrCreate(recipe: recipe,
@@ -49,9 +49,9 @@ class DataManager {
         }, completionError: completionError)
     }
 
-    // Get recepies from Data Base
+    // Get all recepies from Data Base
     class func recipesFromDatabase() -> [RecipeStruct]? {
-        let recipeEntities = try? RecipeEntity.getAllRecipes(context: DatabaseService.viewContext)
+        let recipeEntities = try? RecipeEntity.getAllRecipes(context: AppDelegate.coreDataContainer.viewContext)
 
         if let recipes = recipeEntities,
             recipes.count > 0 {
