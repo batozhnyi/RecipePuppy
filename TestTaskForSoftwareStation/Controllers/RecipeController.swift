@@ -12,11 +12,9 @@ import CoreData
 class RecipeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var fetchMore = false
-
     lazy var fetchedResultsController: NSFetchedResultsController<RecipeEntity> = {
         let fetchRequest = NSFetchRequest<RecipeEntity>(entityName: "RecipeEntity")
         let managedContext = AppDelegate.viewContext
-//        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         fetchRequest.sortDescriptors = []
         let fetchedResultsController = NSFetchedResultsController<RecipeEntity>(fetchRequest: fetchRequest,
                                                                                 managedObjectContext: managedContext,
@@ -69,12 +67,18 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
             cell.label.text = receipeTitle
             cell.text.text = ingredients
 
-            if let url = URL(string: thumbnail) {
-                DispatchQueue.global(qos: .userInteractive).async {
-                    let data = try? Data(contentsOf: url)
-                    DispatchQueue.main.async {
-                        cell.image.image = UIImage(data: data!)
+            if thumbnail == "" {
+                let imageCustom = "noImage"
+                cell.image.image = UIImage(named: imageCustom)
+            } else {
+                if let url = URL(string: thumbnail) {
+                    DispatchQueue.global(qos: .userInteractive).async {
+                        let data = try? Data(contentsOf: url)
+                        DispatchQueue.main.async {
+                            cell.image.image = UIImage(data: data!)
+                        }
                     }
+
                 }
             }
 
@@ -89,7 +93,7 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 85)
+        return CGSize(width: view.frame.width, height: 140)
     }
 
     // Export data of item to prepare
@@ -123,7 +127,7 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
 
-        if offsetY > contentHeight - scrollView.frame.height * 4 {
+        if offsetY > contentHeight - scrollView.frame.height * 2 {
             if !fetchMore {
                 if Reachability.isConnectedToNetwork(){
                     beginBatchFetch()
