@@ -114,8 +114,11 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
             let receipeHref = importRecipes.href {
             self.classReceipeTitle = receipeTitle
             self.classReceipeHref = receipeHref
-        }
 
+            performSegue(withIdentifier: "PopupSegue",
+                         sender: self)
+
+        }
     }
 
     // Send url and title to Popup View
@@ -133,7 +136,7 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
 
-        if offsetY > contentHeight - scrollView.frame.height {
+        if offsetY > contentHeight - scrollView.frame.height * 4 {
             if !fetchMore {
                 if Reachability.isConnectedToNetwork(){
                     beginBatchFetch()
@@ -171,6 +174,4 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
                                         }
                                 })
     }
-
-    
 }

@@ -10,6 +10,10 @@ import Foundation
 
 class DataManager {
 
+    static var pageNumber: Int = {
+        return 1
+    }()
+
     typealias ErrorCompletion = (Error) -> (Void)
 
     class func getRecipes(_ complitionHandler: @escaping ([RecipeStruct]) -> Void,
@@ -38,11 +42,10 @@ class DataManager {
     class func downloadRecipe(_ completionHandler: @escaping ([RecipeStruct]) -> Void,
                               completionError: @escaping ErrorCompletion) {
 
-        let pageNumber = Int(arc4random_uniform(100) + 1)
-
         ServerService.downloadRecipes(with: pageNumber,
                                completionHandler: { (recipes) in
             guard let openRecipeResult = recipes.results else { return }
+            pageNumber = pageNumber + 1
             print(pageNumber)
             completionHandler(openRecipeResult)
         }, completionError: completionError)
