@@ -16,8 +16,8 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
     lazy var fetchedResultsController: NSFetchedResultsController<RecipeEntity> = {
         let fetchRequest = NSFetchRequest<RecipeEntity>(entityName: "RecipeEntity")
         let managedContext = AppDelegate.viewContext
-        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
+//        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = []
         let fetchedResultsController = NSFetchedResultsController<RecipeEntity>(fetchRequest: fetchRequest,
                                                                                 managedObjectContext: managedContext,
                                                                                 sectionNameKeyPath: nil,
