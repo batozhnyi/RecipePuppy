@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E1AD6D521C454E4005723E1 /* Recipe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1AD6D421C454E4005723E1 /* Recipe.storyboard */; };
+		5E6D9CA721D2EDD3003E4719 /* ImagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D9CA621D2EDD3003E4719 /* ImagesManager.swift */; };
 		5E860FF521C9357B00B5B053 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E860FF421C9357B00B5B053 /* CollectionViewCell.swift */; };
 		5E860FF721C95D2000B5B053 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E860FF621C95D2000B5B053 /* PopUpViewController.swift */; };
 		5E860FFB21CB984B00B5B053 /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E860FFA21CB984B00B5B053 /* CheckInternet.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		5E1AD6D421C454E4005723E1 /* Recipe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recipe.storyboard; sourceTree = "<group>"; };
+		5E6D9CA621D2EDD3003E4719 /* ImagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesManager.swift; sourceTree = "<group>"; };
 		5E860FF421C9357B00B5B053 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		5E860FF621C95D2000B5B053 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		5E860FFA21CB984B00B5B053 /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
@@ -62,6 +64,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		5E6D9CA921D2EE52003E4719 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5E863CA521CD5BF900ADC383 /* DataManager.swift */,
+				5E6D9CA621D2EDD3003E4719 /* ImagesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		5E863C9E21CD252100ADC383 /* DatabaseServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +100,8 @@
 		5EC678AA21C19B0A0025D136 /* TestTaskForSoftwareStation */ = {
 			isa = PBXGroup;
 			children = (
-				5E863CA521CD5BF900ADC383 /* DataManager.swift */,
 				5E49C49021C419FE0070D0BB /* Controllers */,
+				5E6D9CA921D2EE52003E4719 /* Managers */,
 				5E863C9E21CD252100ADC383 /* DatabaseServices */,
 				5EC678C721C249740025D136 /* ServerServices */,
 				5EC678C821C284740025D136 /* Resources */,
@@ -103,6 +114,7 @@
 			children = (
 				5EC678C321C247B30025D136 /* JsonStruct.swift */,
 				5EC678C021C1A23F0025D136 /* ServerService.swift */,
+				5E860FFA21CB984B00B5B053 /* CheckInternet.swift */,
 			);
 			path = ServerServices;
 			sourceTree = "<group>";
@@ -111,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				5EC678AB21C19B0A0025D136 /* AppDelegate.swift */,
-				5E860FFA21CB984B00B5B053 /* CheckInternet.swift */,
 				5EC678B521C19B0D0025D136 /* Assets.xcassets */,
 				5EC678B721C19B0D0025D136 /* LaunchScreen.storyboard */,
 				5EC678BA21C19B0D0025D136 /* Info.plist */,
@@ -196,6 +207,7 @@
 				5EC678AE21C19B0A0025D136 /* RecipeController.swift in Sources */,
 				5EC678AC21C19B0A0025D136 /* AppDelegate.swift in Sources */,
 				5E860FF521C9357B00B5B053 /* CollectionViewCell.swift in Sources */,
+				5E6D9CA721D2EDD3003E4719 /* ImagesManager.swift in Sources */,
 				5EC678B421C19B0A0025D136 /* CoreDataRecipes.xcdatamodeld in Sources */,
 				5E863CA221CD2C6B00ADC383 /* RecipeEntity.swift in Sources */,
 				5EC678C121C1A23F0025D136 /* ServerService.swift in Sources */,

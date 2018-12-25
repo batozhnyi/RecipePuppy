@@ -72,13 +72,10 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
                 cell.image.image = UIImage(named: imageCustom)
             } else {
                 if let url = URL(string: thumbnail) {
-                    DispatchQueue.global(qos: .userInteractive).async {
-                        let data = try? Data(contentsOf: url)
-                        DispatchQueue.main.async {
-                            cell.image.image = UIImage(data: data!)
-                        }
-                    }
 
+                    ImagesManager.downloadImage(url: url) { image in
+                        cell.image.image = image
+                    }
                 }
             }
 
