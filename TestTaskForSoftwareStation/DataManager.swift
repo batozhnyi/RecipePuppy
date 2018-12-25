@@ -38,13 +38,12 @@ class DataManager {
     class func downloadRecipe(_ completionHandler: @escaping ([RecipeStruct]) -> Void,
                               completionError: @escaping ErrorCompletion) {
 
-        var pageNumber = 1
+        let pageNumber = Int(arc4random_uniform(100) + 1)
 
         ServerService.downloadRecipes(with: pageNumber,
                                completionHandler: { (recipes) in
             guard let openRecipeResult = recipes.results else { return }
-            print(openRecipeResult)
-            pageNumber = pageNumber + 1
+            print(pageNumber)
             completionHandler(openRecipeResult)
         }, completionError: completionError)
     }

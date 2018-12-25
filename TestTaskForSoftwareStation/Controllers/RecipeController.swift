@@ -11,10 +11,12 @@ import CoreData
 
 class RecipeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var fetchMore = false
+
     lazy var fetchedResultsController: NSFetchedResultsController<RecipeEntity> = {
         let fetchRequest = NSFetchRequest<RecipeEntity>(entityName: "RecipeEntity")
         let managedContext = AppDelegate.viewContext
-        let sortDescriptor = NSSortDescriptor(key: "href", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         let fetchedResultsController = NSFetchedResultsController<RecipeEntity>(fetchRequest: fetchRequest,
                                                                                 managedObjectContext: managedContext,
@@ -26,15 +28,31 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DataManager.getRecipes({ (recipes) in
+        if Reachability.isConnectedToNetwork(){
+            DispatchQueue.global(qos: .userInteractive).async {
+                DataManager.getRecipes({ (recipes) in
+                    DispatchQueue.main.async {
+                        do {
+                            try self.fetchedResultsController.performFetch()
+                        } catch let err {
+                            print(err)
+                        }
+
+                        self.collectionView.reloadData()
+                    }
+                }) { (error) -> (Void) in
+                    print(error)
+                }
+            }
+        } else {
             do {
                 try self.fetchedResultsController.performFetch()
             } catch let err {
                 print(err)
             }
-        }) { (error) -> (Void) in
-            print(error)
         }
+
+
     }
 
     // Number of recipes
@@ -61,12 +79,12 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
             cell.label.text = receipeTitle
             cell.text.text = ingredients
 
-            let url = URL(string: thumbnail)
-
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url!)
-                DispatchQueue.main.async {
-                    cell.image.image = UIImage(data: data!)
+            if let url = URL(string: thumbnail) {
+                DispatchQueue.global(qos: .userInteractive).async {
+                    let data = try? Data(contentsOf: url)
+                    DispatchQueue.main.async {
+                        cell.image.image = UIImage(data: data!)
+                    }
                 }
             }
 
@@ -105,11 +123,54 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
         if segue.identifier == "PopupSegue" {
             if let PopUpViewController = segue.destination as? PopUpViewController {
 
-
-                PopUpViewController.href = classReceipeHref
+                PopUpViewController.receipeHref = classReceipeHref
                 PopUpViewController.receipeTitle = classReceipeTitle
             }
         }
     }
 
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchMore {
+                if Reachability.isConnectedToNetwork(){
+                    beginBatchFetch()
+                }
+            }
+        }
+    }
+
+    func beginBatchFetch() {
+        fetchMore = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0,
+                                      execute: {
+                                        DispatchQueue.global(qos: .userInteractive).async {
+                                            DataManager.downloadRecipe({ (recipes) in
+                                                AppDelegate.coreDataContainer.performBackgroundTask({ (context) in
+
+                                                    for recipe in recipes {
+                                                        _ = try? RecipeEntity.findOrCreate(recipe: recipe,
+                                                                                           context: context)
+                                                    }
+                                                    try? context.save()
+                                                })
+                                            }, completionError: { (error) -> (Void) in
+                                                print(error)
+                                            })
+                                            DispatchQueue.main.async {
+                                                do {
+                                                    try self.fetchedResultsController.performFetch()
+                                                } catch let err {
+                                                    print(err)
+                                                }
+                                                self.fetchMore = false
+                                                self.collectionView.reloadData()
+                                            }
+                                        }
+                                })
+    }
+
+    
 }
