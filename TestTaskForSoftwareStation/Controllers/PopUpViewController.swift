@@ -15,8 +15,9 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var image: UIImageView!
-    var receipeHref: String?
-    var receipeTitle: String?
+
+    var recipeHref: String?
+    var recipeTitle: String?
 
     let noInternetImage = "noInternet"
     let noInternetLabel = "Sorry"
@@ -29,7 +30,7 @@ class PopUpViewController: UIViewController {
 
         if Reachability.isConnectedToNetwork(){
             webViewPopUp()
-        }else{
+        } else {
             image.image = UIImage(named: noInternetImage)
             label.text = noInternetLabel
         }
@@ -43,8 +44,8 @@ class PopUpViewController: UIViewController {
 
     // Opened web view
     func webViewPopUp() {
-        label.text = receipeTitle
-        guard let url = URL(string: receipeHref!) else { return }
+        label.text = recipeTitle
+        guard let url = URL(string: recipeHref!) else { return }
         let request = URLRequest(url: url)
         webView.load(request)
     }

@@ -28,31 +28,21 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if Reachability.isConnectedToNetwork(){
-            DispatchQueue.global(qos: .userInteractive).async {
-                DataManager.getRecipes({ (recipes) in
-                    DispatchQueue.main.async {
-                        do {
-                            try self.fetchedResultsController.performFetch()
-                        } catch let err {
-                            print(err)
-                        }
-
-                        self.collectionView.reloadData()
+        DispatchQueue.global(qos: .userInteractive).async {
+            DataManager.getRecipes({ (recipes) in
+                DispatchQueue.main.async {
+                    do {
+                        try self.fetchedResultsController.performFetch()
+                    } catch let err {
+                        print(err)
                     }
-                }) { (error) -> (Void) in
-                    print(error)
+
+                    self.collectionView.reloadData()
                 }
-            }
-        } else {
-            do {
-                try self.fetchedResultsController.performFetch()
-            } catch let err {
-                print(err)
+            }) { (error) -> (Void) in
+                print(error)
             }
         }
-
-
     }
 
     // Number of recipes
@@ -102,36 +92,33 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
         return CGSize(width: view.frame.width, height: 85)
     }
 
-    var classReceipeTitle = ""
-    var classReceipeHref = ""
-
+    // Export data of item to prepare
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
 
         let importRecipes = fetchedResultsController.object(at: indexPath)
-
-        if let receipeTitle = importRecipes.title,
-            let receipeHref = importRecipes.href {
-            self.classReceipeTitle = receipeTitle
-            self.classReceipeHref = receipeHref
-
-            performSegue(withIdentifier: "PopupSegue",
-                         sender: self)
-
-        }
+        performSegue(withIdentifier: "PopupSegue",
+                     sender: importRecipes)
     }
 
     // Send url and title to Popup View
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PopupSegue" {
             if let PopUpViewController = segue.destination as? PopUpViewController {
+                if let openSender = sender as? RecipeEntity {
+                    if let openHrefSender = openSender.href,
+                        let openTitleSender = openSender.title {
+                            PopUpViewController.recipeHref = openHrefSender
+                            PopUpViewController.recipeTitle = openTitleSender
+                    }
 
-                PopUpViewController.receipeHref = classReceipeHref
-                PopUpViewController.receipeTitle = classReceipeTitle
+                }
+
             }
         }
     }
 
+    // Check scroll and call next pecipes
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -145,6 +132,7 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
         }
     }
 
+    // Download next recipes from API and show
     func beginBatchFetch() {
         fetchMore = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0,

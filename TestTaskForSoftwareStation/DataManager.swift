@@ -16,6 +16,7 @@ class DataManager {
 
     typealias ErrorCompletion = (Error) -> (Void)
 
+    // Get all recepies from Data Base or download from API and save
     class func getRecipes(_ complitionHandler: @escaping ([RecipeStruct]) -> Void,
                           completionError: @escaping ErrorCompletion) {
 
@@ -31,6 +32,7 @@ class DataManager {
                         _ = try? RecipeEntity.findOrCreate(recipe: recipe,
                                                            context: context)
                     }
+                    // This code sometimes doesn't work
                     try? context.save()
                     complitionHandler(recipes)
                 })
