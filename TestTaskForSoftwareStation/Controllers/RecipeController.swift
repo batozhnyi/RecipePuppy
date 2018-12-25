@@ -89,13 +89,6 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
         return cell
     }
 
-    // Auto-width for cell
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 140)
-    }
-
     // Export data of item to prepare
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
@@ -166,4 +159,24 @@ class RecipeController: UICollectionViewController, UICollectionViewDelegateFlow
                                         }
                                 })
     }
+
+    // Auto-width for cell
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 85)
+    }
+
+    // Change background color when user touches cell
+    override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor.gray
+    }
+
+    // Change background color back when user releases touch
+    override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor.white
+    }
+
 }
